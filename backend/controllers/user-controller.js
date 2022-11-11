@@ -1,4 +1,4 @@
-const User = require("../model/User");
+const userModel = require("../model/User");
 const bcrypt = require("bcryptjs");
 const salt = bcrypt.genSaltSync();
 
@@ -21,7 +21,7 @@ exports.signup = async (req, res) => {
   const { name, email, password } = req.body;
   // let existingUser;
   try {
-    let existingUser = await User.findOne({ email });
+    let existingUser = await userModel.findOne({ email });
     console.log(existingUser);
 
     if (existingUser) {
@@ -54,7 +54,7 @@ exports.login = async (req, res, next) => {
   const { email, password } = req.body;
   let existingUser;
   try {
-    existingUser = await User.findOne({ email });
+    existingUser = await userModel.findOne({ email });
 
     if (!existingUser) {
       return res
