@@ -1,8 +1,8 @@
-import User from "../model/User";
-import bcrypt from "bcryptjs";
+const User = require("../model/User");
+const bcrypt = require("bcryptjs");
 const salt = bcrypt.genSaltSync();
 
-export const getAllUser = async (req, res, next) => {
+exports.getAllUser = async (req, res, next) => {
   let users;
 
   try {
@@ -17,7 +17,7 @@ export const getAllUser = async (req, res, next) => {
   return res.status(200).json({ users });
 };
 
-export const signup = async (req, res) => {
+exports.signup = async (req, res) => {
   const { name, email, password } = req.body;
   // let existingUser;
   try {
@@ -50,7 +50,7 @@ export const signup = async (req, res) => {
   }
 };
 
-export const login = async (req, res, next) => {
+exports.login = async (req, res, next) => {
   const { email, password } = req.body;
   let existingUser;
   try {
