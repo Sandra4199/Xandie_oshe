@@ -6,7 +6,7 @@ exports.getAllUser = async (req, res, next) => {
   let users;
 
   try {
-    users = await User.find();
+    users = await userModel.find();
   } catch (err) {
     return console.log(err);
   }
@@ -29,7 +29,7 @@ exports.signup = async (req, res) => {
     } else {
       const hashedPassword = bcrypt.hashSync(password, salt);
 
-      const user = new User({
+      const user = new userModel({
         name,
         email,
         password: hashedPassword,
